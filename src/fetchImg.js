@@ -4,6 +4,7 @@ export default class ImgFetching {
   constructor() {
     this.searchQuery = '';
     this.page = 1;
+    this.hits = 0;
   };
 
   async fetchImg() {

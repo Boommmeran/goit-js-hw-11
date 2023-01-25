@@ -39,18 +39,33 @@ async function onLoadMore() {
 
 async function createContainer() {
   const response = await fetchImgServise.fetchImg();
+  
+  fetchImgServise.hits += response.data.hits.length;
+
+  console.log(fetchImgServise.hits);
+
   if (fetchImgServise.page === 1 && response.data.totalHits !== 0) {
     Notiflix.Notify.success(
     `Hooray! We found ${response.data.totalHits} images.`
   );
-  }
-  if (response.data.totalHits === 0) {
+  };
+
+  if (response.data.hits.length === 0) {
     Notiflix.Notify.info(
       'Sorry, there are no images matching your search query. Please try again.'
     );
     loadMoreBtnRef.style.display = 'none';
     return;
   }
+
+  if (response.data.totalHits <= fetchImgServise.hits) {
+    Notiflix.Notify.info(
+      "We're sorry, but you've reached the end of search results."
+    );
+    loadMoreBtnRef.style.display = 'none';
+    return;
+  }
+
   loadMoreBtnRef.style.display = 'block';
 
   marcup(response.data.hits);
