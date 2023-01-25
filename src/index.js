@@ -34,15 +34,12 @@ async function onFormSubmit(e) {
 async function onLoadMore() {
   fetchImgServise.plusPage();
   createContainer();
-  console.log(fetchImgServise.page);
 }
 
 async function createContainer() {
   const response = await fetchImgServise.fetchImg();
-  
-  fetchImgServise.hits += response.data.hits.length;
 
-  console.log(fetchImgServise.hits);
+  fetchImgServise.hits += response.data.hits.length;
 
   if (fetchImgServise.page === 1 && response.data.totalHits !== 0) {
     Notiflix.Notify.success(
