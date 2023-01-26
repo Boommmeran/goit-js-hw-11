@@ -27,8 +27,8 @@ async function onFormSubmit(e) {
     return;
   }
   fetchImgServise.resetPage();
+  fetchImgServise.resetHits();
   createContainer();
-  console.log(fetchImgServise.page);
 }
 
 async function onLoadMore() {
@@ -60,13 +60,14 @@ async function createContainer() {
       "We're sorry, but you've reached the end of search results."
     );
     loadMoreBtnRef.style.display = 'none';
+    marcup(response.data.hits);
     return;
   }
 
   loadMoreBtnRef.style.display = 'block';
 
   marcup(response.data.hits);
-}
+};
 
 function marcup(response) {
   const galleryItem = response

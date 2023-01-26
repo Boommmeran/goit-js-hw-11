@@ -21,7 +21,11 @@ export default class ImgFetching {
   resetPage() {
     this.page = 1;
   };
-;
+
+  resetHits() {
+    this.hits = 0;
+  };
+
   get query() {
     return this.searchQuery;
   };
